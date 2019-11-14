@@ -45,8 +45,36 @@ hazelcast:
       management-center:
         enabled: ${hazelcast.mancenter.enabled}
         url: ${hazelcast.mancenter.url}
+#      cp-subsystem:
+#        cp-member-count: 3
+#        group-size: 3
+#        session-time-to-live-seconds: 60
+#        session-heartbeat-interval-seconds: 5
+#        missing-cp-member-auto-removal-seconds: 120
+#        fail-on-indeterminate-operation-state: false
+#        persistence-enabled: false
+#        base-dir: data
+#        data-load-timeout-seconds: 30
+#        raft-algorithm:
+#          leader-election-timeout-in-millis: 2000
+#          leader-heartbeat-period-in-millis: 5000
+#          max-missed-leader-heartbeat-count: 5
+#          append-request-max-entry-count: 50
+#          commit-index-advance-count-to-snapshot: 1000
+#          uncommitted-entry-count-to-reject-new-appends: 100
+#          append-request-backoff-timeout-in-millis: 100
   # configurationFiles are any additional Hazelcast configuration files
   # configurationFiles:
+#    semaphores:
+#      sem1:
+#        jdk-compatible: true
+#      sem2:
+#        jdk-compatible: false
+#    locks:
+#      lock1:
+#        lock-acquire-limit: 1
+#      lock2:
+#        lock-acquire-limit: 2
 
 # affinity specifies the affinity/anti-affinity of different pods. The commented out
 # example below shows how you could ensure your hazelcast pods are scheduled on
@@ -162,7 +190,7 @@ securityContext:
 
 # Allows to enable a Prometheus to scrape pods, implemented for Hazelcast version >= 3.12 (or 'latest')
 metrics:
-  enabled: false
+  enabled: true
   service:
     type: ClusterIP
     port: 8080
@@ -246,7 +274,7 @@ mancenter:
     # existingClaim:
     # accessModes defines the access modes for the created Persistent Volume Claim
     accessModes:
-    - ReadWriteOnce
+      - ReadWriteOnce
     # size is the size of Persistent Volume Claim
     size: 8Gi
 
